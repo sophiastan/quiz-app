@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const Quiz = () => {
@@ -45,13 +45,24 @@ const Quiz = () => {
   const [showScore, setShowScore] = useState(false);
   const [score, setScore] = useState(0);
   const [passFail, setPassFail] = useState("failed");
+  const [timerOn, setTimerOn] = useState(true);
+  const [seconds, setSeconds] = useState(100);
+
+  useEffect(() => {
+    if (timerOn) {
+      setTimeout(() => setSeconds(seconds - 1), 1000);
+    }
+    else {
+      clearInterval(seconds);
+    }
+  })
 
   const handleAnswerButtonClick = (isCorrect) => {
     if (isCorrect) {
       setScore(score + 1); 
     }
 
-    if ((score) >= 3) {
+    if (score >= 3) {
       setPassFail("passed");
     }
 
@@ -60,6 +71,7 @@ const Quiz = () => {
       setCurrentQuestion(nextQuestion);
     }
     else {
+      setTimerOn(false);
       setShowScore(true);
     }
   }
@@ -67,10 +79,11 @@ const Quiz = () => {
   return (
     <div className='app'>
       { showScore ? 
-        (
+        ( 
           <div className='score-section'>
             <p>You scored {score} out of {questions.length}.</p>
             <p>You {passFail} the test.</p>
+            <p>Seconds Elapsed: {100-seconds}</p>
           </div>
         ) :
         (
@@ -82,7 +95,7 @@ const Quiz = () => {
               <div className='question-text'>{questions[currentQuestion].questionText}</div>
             </div>
             <div className='answer-section'>
-              {questions[currentQuestion].answerOptions.map((answerOption, index) => (
+              {questions[currentQuestion].answerOptions.map((answerOption, i) => (
                 <button onClick={() => handleAnswerButtonClick(answerOption.isCorrect)}>{answerOption.answerText}</button>
               ))}
             </div>
