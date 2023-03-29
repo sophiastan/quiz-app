@@ -1,0 +1,84 @@
+/* Selector {
+  Property: value;
+} */
+
+/* The whole html page but does not change styles/selectors below this */
+* {
+  text-align: right;
+}
+
+body {
+  background-image: url(background.jpg);
+  background-size: cover;
+}
+
+/* Element, Element */
+h2, p {
+  color: #AA3939;
+  text-align: center;
+  border: 5px solid rgb(191, 123, 123, .7);
+  cursor: pointer;
+}
+
+/* 
+Element Element
+- h2 p would have styling only on p in h2
+
+Element > ELement
+- h2 > p would only be applied if h2 is the parent tag of p
+
+Element + Element
+- h2 + p would only be applied if p tag is underneath h2 tag
+
+More selectors
+:hover <- changes when tag is hovered
+:last-child <- last of element in the tags styling applied
+:first-child <- first of element styling applied
+!important <- don't recommend overrides any CSS rules */
+
+p {
+  /* text-decoration: line-through; */
+  /* text-transform: uppercase; */
+  line-height: 20px;
+  font-style: italic;
+  font-weight: bold;
+  font-size: 80%;
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+img {
+  float: left;
+}
+
+footer {
+  clear: both;
+  text-align: center;
+}
+
+li {
+  list-style: none;
+  display: inline-block;
+}
+
+/* Class Selector .class */
+.webtext {
+  border: 5px dotted rgb(191, 123, 123, .3);
+}
+
+.active {
+  color: #A63232;
+}
+
+/* ID Selector #id */
+#div1 {
+  background: rgb(108, 32, 108, .2);
+}
+
+#div2 {
+  background: rgb(70, 87, 138, .2);
+}
+
+/* What selectors win out in the cascade depends on: 
+- Specificity
+- Importance
+- Source Order */

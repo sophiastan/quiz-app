@@ -1,0 +1,21 @@
+h2 {
+  color: blue;
+}
+
+.boxmodel {
+  border: 5px solid pink;
+  display: inline-block;
+  padding: 5px 20px 5px 20px;
+  margin: 0px 20px;
+  width: 30px;
+  height: 50px;
+}
+
+p {
+  font-size: 20px;
+}
+
+span {
+  font-size: 5em; /* 20 * 5 = 100px */
+  /* rem is relative to font size of the whole html page */
+}
